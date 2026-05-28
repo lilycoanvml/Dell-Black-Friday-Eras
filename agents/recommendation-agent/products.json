@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2024-11-28",
+  "lastUpdated": "2026-11-27",
   "catalog": [
     {
       "id": "xps-16-9640",
@@ -18,7 +18,7 @@
       },
       "description": "16.3\" OLED display, Intel Core Ultra 9, 32GB RAM, NVIDIA GeForce RTX 4060",
       "specs": ["16.3\" 3.2K OLED 120Hz", "Intel Core Ultra 9 185H", "32GB LPDDR5x RAM", "1TB NVMe SSD", "NVIDIA RTX 4060 8GB"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "xps-15-9530",
@@ -35,7 +35,7 @@
       },
       "description": "Ubuntu pre-installed, 15.6\" OLED, Intel Core i9, 32GB RAM",
       "specs": ["15.6\" 3.5K OLED 60Hz", "Intel Core i9-13900H", "32GB DDR5 RAM", "1TB NVMe SSD", "NVIDIA RTX 4060"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "latitude-9550",
@@ -52,7 +52,7 @@
       },
       "description": "15\" business ultrabook, Intel vPro, built-in AI features, MIL-SPEC tested",
       "specs": ["15\" FHD+ IPS 60Hz", "Intel Core Ultra 7 vPro", "16GB LPDDR5 RAM", "512GB SSD", "Intel Arc Graphics"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "xps-13-9340",
@@ -69,7 +69,7 @@
       },
       "description": "13.4\" ultraportable, 1.17kg, 12-hour battery, Thunderbolt 4",
       "specs": ["13.4\" FHD+ IPS 60Hz", "Intel Core i7-1355U", "16GB LPDDR5 RAM", "512GB SSD", "Intel Iris Xe"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "alienware-m18-r2",
@@ -86,7 +86,7 @@
       },
       "description": "18\" gaming laptop, RTX 4090, 240Hz display, Cherry MX keyboard",
       "specs": ["18\" QHD+ 240Hz", "Intel Core i9-13980HX", "32GB DDR5 RAM", "2TB NVMe SSD", "NVIDIA RTX 4090 16GB"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "ultrasharp-27-4k",
@@ -104,7 +104,7 @@
       },
       "description": "27\" 4K IPS Black, 100% sRGB, USB-C 90W charging, built-in KVM",
       "specs": ["27\" 4K 3840x2160 IPS Black", "100% sRGB, 98% DCI-P3", "USB-C 90W", "Built-in KVM", "99.5% uptime design"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "ultrasharp-32-4k-usbc",
@@ -122,7 +122,7 @@
       },
       "description": "32\" 4K IPS, USB-C 90W, daisy-chain DisplayPort, built-in KVM",
       "specs": ["32\" 4K 3840x2160 IPS", "USB-C 90W", "Daisy-chain DP 1.4", "Built-in KVM", "Color calibration report"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "dell-40-curved",
@@ -140,7 +140,7 @@
       },
       "description": "40\" curved WUHD 5K2K, built-in conferencing cam, speaker, Teams certified",
       "specs": ["40\" WUHD 5120x2160 IPS", "Built-in 4K webcam", "Built-in speaker/mic array", "Teams/Zoom certified", "USB-C 90W"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "alienware-34-qd-oled",
@@ -157,7 +157,7 @@
       },
       "description": "34\" curved QD-OLED, 165Hz, 0.1ms response, 99.3% DCI-P3",
       "specs": ["34\" QD-OLED 3440x1440", "165Hz 0.1ms", "99.3% DCI-P3", "Dolby Vision", "AlienFX lighting"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "dell-canvas-27",
@@ -174,7 +174,7 @@
       },
       "description": "27\" touch-enabled creative canvas, 2560x1440, stylus support, tilt-adjustable",
       "specs": ["27\" QHD 2560x1440 IPS Touch", "Stylus included", "Tilt 0-75°", "8192 pressure levels", "USB-C + DisplayPort"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "precision-5690",
@@ -191,7 +191,7 @@
       },
       "description": "16\" mobile workstation, ISV certified, NVIDIA RTX A2000, ECC memory option",
       "specs": ["16\" FHD+ IPS 60Hz", "Intel Core i9 vPro", "32GB ECC RAM", "1TB SSD", "NVIDIA RTX A2000 8GB"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "thunderbolt-dock-wd22tb4",
@@ -209,7 +209,7 @@
       },
       "description": "Thunderbolt 4 dock, 180W charging, dual 4K 60Hz displays, 12 ports",
       "specs": ["Thunderbolt 4", "12 ports", "180W laptop charging", "Dual 4K 60Hz", "HDMI + DP + 4x USB-A + 3x USB-C"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "pro-wireless-headset-wl5022",
@@ -227,7 +227,7 @@
       },
       "description": "Wireless headset, 40hr battery, Teams certified, AI noise cancellation",
       "specs": ["Wireless 2.4GHz + Bluetooth", "40-hour battery", "AI noise cancellation", "Teams/Zoom certified", "Lightweight 165g"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "alienware-pro-mouse-aw920m",
@@ -244,7 +244,7 @@
       },
       "description": "Tri-mode wireless, 26,000 DPI, 100hr battery, AlienFX RGB",
       "specs": ["26,000 DPI optical", "Tri-mode wireless", "100-hour battery", "AlienFX RGB", "6 programmable buttons"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "premier-wireless-km7321w",
@@ -262,7 +262,7 @@
       },
       "description": "Multi-device Bluetooth, rechargeable, quiet keys, premium aluminum",
       "specs": ["Bluetooth 5.0 + USB receiver", "Multi-device (3 devices)", "Rechargeable", "Quiet typing keys", "Brushed aluminum"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "power-companion-pw7018lc",
@@ -279,7 +279,7 @@
       },
       "description": "18,000 mAh laptop battery bank, USB-C, charges most Dell laptops",
       "specs": ["18,000 mAh", "USB-C 45W output", "USB-A 5W output", "Charges most Dell laptops", "TSA carry-on approved"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     },
     {
       "id": "monitor-p2725he",
@@ -296,7 +296,7 @@
       },
       "description": "27\" FHD IPS, USB-C 90W, 4x USB-A hub, height adjustable",
       "specs": ["27\" FHD 1920x1080 IPS", "USB-C 90W", "4x USB-A hub", "Height/tilt/swivel adjust", "99% sRGB"],
-      "dealEnds": "2024-12-02"
+      "dealEnds": "2026-12-01"
     }
   ]
 }

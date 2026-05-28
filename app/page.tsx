@@ -202,7 +202,7 @@ export default function EraQuiz() {
       {/* Start overlay */}
       {showStart && (
         <div id="start-screen" className={startOut ? 'out' : ''}>
-          <div className="s-label">VML × Dell Technologies — Black Friday 2024</div>
+          <div className="s-label">Dell Technologies — Black Friday 2026</div>
           <div className="s-title">
             The Next<br /><em>Era Event</em>
           </div>
@@ -217,7 +217,7 @@ export default function EraQuiz() {
         <div id="meta-bar">
           <div className="meta-left">
             <div className="brand-lockup">
-              <strong>Dell Technologies</strong><br />Black Friday 2024
+              <strong>Dell Technologies</strong><br />Black Friday 2026
             </div>
             <div className="divider-dot" />
             <div className="event-name">The Next Era Event</div>
@@ -314,7 +314,7 @@ export default function EraQuiz() {
 
         {/* Footer */}
         <div id="footer-bar">
-          <div className="footer-copy">&copy; 2024 Dell Technologies &middot; Black Friday &middot; VML Experience</div>
+          <div className="footer-copy">&copy; 2026 Dell Technologies &middot; Black Friday</div>
           <div className="footer-cta">Dell.com/blackfriday</div>
         </div>
       </div>
