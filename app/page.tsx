@@ -355,7 +355,19 @@ export default function EraQuiz() {
                       style={{ '--prot': PROTS[i], '--era-primary': era.primaryColor } as React.CSSProperties}
                     >
                       <div className="polaroid-photo">
-                        <img src={p.imageUrl} alt={p.name} className="polaroid-img" />
+                        <img
+                          src={p.imageUrl}
+                          alt={p.name}
+                          className="polaroid-img"
+                          onError={e => {
+                            const el = e.currentTarget;
+                            el.style.display = 'none';
+                            const fb = document.createElement('div');
+                            fb.className = 'polaroid-img-fallback';
+                            fb.textContent = p.name;
+                            el.parentElement?.appendChild(fb);
+                          }}
+                        />
                       </div>
                       <div className="polaroid-name">{p.name}</div>
                       <div className="polaroid-prices">

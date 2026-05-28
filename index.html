@@ -456,13 +456,30 @@
       margin-bottom: 10px;
       background: #fff;
       overflow: hidden;
+      isolation: isolate;
     }
     .polaroid-img {
-      width: 100%;
-      height: 100%;
+      width: 92%;
+      height: 92%;
       object-fit: contain;
       display: block;
-      mix-blend-mode: multiply;
+    }
+    .polaroid-img-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 7px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      opacity: 0.35;
+      text-align: center;
+      padding: 8px;
+      line-height: 1.7;
+      background: var(--bg);
     }
     .polaroid-link {
       display: inline-block;
@@ -971,8 +988,9 @@ function showResult() {
     pol.className = 'polaroid';
     pol.style.setProperty('--era-primary', era.primaryColor);
     pol.innerHTML = `
-      <div class="polaroid-photo">
-        <img src="${p.imageUrl}" alt="${p.name}" class="polaroid-img" />
+      <div class="polaroid-photo" id="photo-${i}">
+        <img src="${p.imageUrl}" alt="${p.name}" class="polaroid-img"
+          onerror="this.style.display='none';var f=document.createElement('div');f.className='polaroid-img-fallback';f.textContent='${p.name}';this.parentElement.appendChild(f);" />
       </div>
       <div class="polaroid-name">${p.name}</div>
       <div class="polaroid-prices">
