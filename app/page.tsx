@@ -64,7 +64,7 @@ const QUESTIONS = [
   },
 ];
 
-type Product = { name: string; price: string; orig: string; save: string; caption: string };
+type Product = { name: string; price: string; orig: string; save: string; caption: string; imageUrl: string; productUrl: string };
 type Era     = { name: string; tagline: string; description: string; primaryColor: string; products: Product[] };
 
 const ERAS: Record<string, Era> = {
@@ -74,9 +74,24 @@ const ERAS: Record<string, Era> = {
     description:  "Your next chapter is defined by what you make — the art, the content, the work that only you could bring into the world. This era belongs to the ones who build beautiful things and dare to share them.",
     primaryColor: '#8B5CF6',
     products: [
-      { name: 'Dell XPS 16',                   price: '$1,799', orig: '$2,199', save: '$400', caption: 'Your work deserves a canvas this beautiful.'      },
-      { name: 'Dell UltraSharp 27 4K Monitor', price: '$449',   orig: '$699',   save: '$250', caption: 'Every pixel of your vision, rendered faithfully.' },
-      { name: 'Dell Canvas 27',                price: '$1,299', orig: '$1,799', save: '$500', caption: 'Draw, design, and create right on your screen.'   },
+      {
+        name: 'Dell XPS 16', price: '$1,799', orig: '$2,199', save: '$400',
+        caption:    'Your work deserves a canvas this beautiful.',
+        imageUrl:   'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/16-9640/media-gallery/silver/touch/notebook-laptop-xps-16-9640-t-silver-gallery-2.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=612&qlt=100,1&resMode=sharp2&size=612,402&chrss=full',
+        productUrl: 'https://www.dell.com/en-us/shop/dell-laptops/xps-16-laptop/spd/xps-16-9640-laptop',
+      },
+      {
+        name: 'Dell UltraSharp 27 4K Monitor', price: '$449', orig: '$699', save: '$250',
+        caption:    'Every pixel of your vision, rendered faithfully.',
+        imageUrl:   'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/u-series/u2725qe/media-gallery/monitor-ultrasharp-u2725qe-gy-gallery-1.psd?fmt=png-alpha&pscan=auto&scl=1&hei=804&wid=906&qlt=100,1&resMode=sharp2&size=906,804&chrss=full',
+        productUrl: 'https://www.dell.com/en-us/shop/dell-ultrasharp-27-4k-thunderbolt-hub-monitor-u2725qe/apd/210-bqhr/monitors-monitor-accessories',
+      },
+      {
+        name: 'Dell Canvas 27', price: '$1,299', orig: '$1,799', save: '$500',
+        caption:    'Draw, design, and create right on your screen.',
+        imageUrl:   'https://i.dell.com/is/image/DellContent/content/dam/images/products/workstations/dell-canvas/kv2718d/canvas-kv2718d-bk-gallery-1.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=527&qlt=100,1&resMode=sharp2&size=527,402&chrss=full',
+        productUrl: 'https://www.dell.com/en-us/shop/cty/dell-canvas/spd/dell-canvas-kv2718d',
+      },
     ],
   },
   achiever: {
@@ -85,9 +100,24 @@ const ERAS: Record<string, Era> = {
     description:  "Strategy, execution, and relentless forward motion — this era is for the ones who turn ambition into outcomes. You lead rooms, hit goals, and immediately set bigger ones.",
     primaryColor: '#F59E0B',
     products: [
-      { name: 'Dell Latitude 9550',           price: '$1,899', orig: '$2,399', save: '$500', caption: 'Business-grade speed, security, and stamina.'    },
-      { name: 'Dell Thunderbolt Dock WD22TB4', price: '$249',   orig: '$349',   save: '$100', caption: 'One cable. Every device. Zero friction.'           },
-      { name: 'Dell 27 Monitor P2725HE',      price: '$299',   orig: '$449',   save: '$150', caption: 'Clear display for the decisions that matter.'     },
+      {
+        name: 'Dell Latitude 9550', price: '$1,899', orig: '$2,399', save: '$500',
+        caption:    'Business-grade speed, security, and stamina.',
+        imageUrl:   'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/latitude-14-9450-laptop-2-in-1/mg/notebook-latitude-14-9450-t-wlan-gray-gallery-1.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=527&qlt=100,1&resMode=sharp2&size=527,402&chrss=full',
+        productUrl: 'https://www.dell.com/en-us/shop/dell-laptops/latitude-9450-2-in-1/spd/latitude-14-9450-2-in-1-laptop',
+      },
+      {
+        name: 'Dell Thunderbolt Dock WD22TB4', price: '$249', orig: '$349', save: '$100',
+        caption:    'One cable. Every device. Zero friction.',
+        imageUrl:   'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/docks/dell-thunderbolt-4-dock-wd22tb4/spi/ng/dock-wd22tb4-black-campaign-hero-504x350-ng.psd?qlt=95&fmt=jpg',
+        productUrl: 'https://www.dell.com/en-us/shop/dell-thunderbolt-dock-wd22tb4/apd/210-bdqh/docks',
+      },
+      {
+        name: 'Dell 27 Monitor P2725HE', price: '$299', orig: '$449', save: '$150',
+        caption:    'Clear display for the decisions that matter.',
+        imageUrl:   'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/p-series/p2725he/media-gallery/monitor-pseries-p2725he-bk-gallery-1.psd?fmt=png-alpha&pscan=auto&scl=1&hei=804&wid=907&qlt=100,1&resMode=sharp2&size=907,804&chrss=full',
+        productUrl: 'https://www.dell.com/en-us/shop/dell-pro-27-plus-usb-c-hub-monitor-p2725he/apd/210-bmfq/monitors-monitor-accessories',
+      },
     ],
   },
   explorer: {
@@ -96,9 +126,24 @@ const ERAS: Record<string, Era> = {
     description:  "You don't need a desk to do your best work. This era belongs to the ones who thrive in motion — trading the commute for curiosity and building a life that moves as fast as you do.",
     primaryColor: '#10B981',
     products: [
-      { name: 'Dell XPS 13',                     price: '$1,099', orig: '$1,399', save: '$300', caption: 'The whole world is your office.'                      },
-      { name: 'Dell Pro Wireless Headset WL5022', price: '$149',   orig: '$229',   save: '$80',  caption: 'Crystal-clear calls from wherever you roam.'         },
-      { name: 'Dell Power Companion PW7018LC',    price: '$129',   orig: '$179',   save: '$50',  caption: 'Keep going long after the outlet runs out.'           },
+      {
+        name: 'Dell XPS 13', price: '$1,099', orig: '$1,399', save: '$300',
+        caption:    'The whole world is your office.',
+        imageUrl:   'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/9345/media-gallery/touch/silver/xps-13-9345-laptop-silver-copilot-pc-mg.png?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=612&qlt=100,1&resMode=sharp2&size=612,402&chrss=full',
+        productUrl: 'https://www.dell.com/en-us/shop/dell-laptops/xps-13-laptop/spd/xps-13-9345-laptop',
+      },
+      {
+        name: 'Dell Pro Wireless Headset WL5022', price: '$149', orig: '$229', save: '$80',
+        caption:    'Crystal-clear calls from wherever you roam.',
+        imageUrl:   'https://i.dell.com/is/image/DellContent/content/dam/images/products/electronics-and-accessories/dell/headphones/wl5022/wl5022-xau-02-bk.psd?fmt=jpg&wid=527&hei=527',
+        productUrl: 'https://www.dell.com/en-us/shop/dell-pro-wireless-headset-wl5022/apd/520-aatb/pc-accessories',
+      },
+      {
+        name: 'Dell Power Companion PW7018LC', price: '$129', orig: '$179', save: '$50',
+        caption:    'Keep going long after the outlet runs out.',
+        imageUrl:   'https://i.dell.com/is/image/DellContent/content/dam/images/products/electronics-and-accessories/dell/power-adapters-batteries/pw7018lc/pw7018lc-gallery-1.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=527&qlt=100,1&resMode=sharp2&size=527,402&chrss=full',
+        productUrl: 'https://www.dell.com/en-us/shop/dell-notebook-power-bank-plus-usb-c-65wh-pw7018lc/apd/451-bcev/pc-accessories',
+      },
     ],
   },
   visionary: {
@@ -107,9 +152,24 @@ const ERAS: Record<string, Era> = {
     description:  "Legacy-level thinking, mission-driven work, and the courage to bet on ideas that haven't been proven yet. This era is for the ones who don't just see what's coming — they build it.",
     primaryColor: '#7C3AED',
     products: [
-      { name: 'Dell XPS 16',                       price: '$1,799', orig: '$2,199', save: '$400', caption: "Power that matches the scale of your ambition."        },
-      { name: 'Dell 40 Curved Conference Monitor',  price: '$999',   orig: '$1,399', save: '$400', caption: 'A panoramic view for people thinking at that scale.'  },
-      { name: 'Dell Premier Wireless KM7321W',      price: '$249',   orig: '$349',   save: '$100', caption: 'A workspace as polished as your pitch.'                },
+      {
+        name: 'Dell XPS 16', price: '$1,799', orig: '$2,199', save: '$400',
+        caption:    'Power that matches the scale of your ambition.',
+        imageUrl:   'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/16-9640/media-gallery/silver/touch/notebook-laptop-xps-16-9640-t-silver-gallery-2.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=612&qlt=100,1&resMode=sharp2&size=612,402&chrss=full',
+        productUrl: 'https://www.dell.com/en-us/shop/dell-laptops/xps-16-laptop/spd/xps-16-9640-laptop',
+      },
+      {
+        name: 'Dell 40 Curved Conference Monitor', price: '$999', orig: '$1,399', save: '$400',
+        caption:    'A panoramic view for people thinking at that scale.',
+        imageUrl:   'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/u-series/u4025qw/media-gallery/monitor-ultrasharp-u4025qw-gray-gallery-1.psd?fmt=png-alpha&pscan=auto&scl=1&hei=804&wid=1242&qlt=100,1&resMode=sharp2&size=1242,804&chrss=full',
+        productUrl: 'https://www.dell.com/en-us/shop/dell-ultrasharp-40-curved-thunderbolt-hub-monitor-u4025qw/apd/210-bmdp/monitors-monitor-accessories',
+      },
+      {
+        name: 'Dell Premier Wireless KM7321W', price: '$249', orig: '$349', save: '$100',
+        caption:    'A workspace as polished as your pitch.',
+        imageUrl:   'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/peripherals/input-devices/dell/keyboards/km7321w/global-spi/ng/dell-keyboard-mouse-km7321w-pdp-relsize-500-ng.psd?fmt=png-alpha',
+        productUrl: 'https://www.dell.com/en-us/shop/dell-premier-multi-device-wireless-keyboard-and-mouse-km7321w/apd/580-ajix/pc-accessories',
+      },
     ],
   },
 };
@@ -295,7 +355,7 @@ export default function EraQuiz() {
                       style={{ '--prot': PROTS[i], '--era-primary': era.primaryColor } as React.CSSProperties}
                     >
                       <div className="polaroid-photo">
-                        <div className="polaroid-photo-label">{p.name}<br />photo placeholder</div>
+                        <img src={p.imageUrl} alt={p.name} className="polaroid-img" />
                       </div>
                       <div className="polaroid-name">{p.name}</div>
                       <div className="polaroid-prices">
@@ -303,6 +363,9 @@ export default function EraQuiz() {
                         <span className="polaroid-original">{p.orig}</span>
                       </div>
                       <div className="polaroid-caption">{p.caption}<br /><em>Save {p.save}</em></div>
+                      <a href={p.productUrl} target="_blank" rel="noopener noreferrer" className="polaroid-link">
+                        Shop on Dell.com →
+                      </a>
                     </div>
                   ))}
                 </div>

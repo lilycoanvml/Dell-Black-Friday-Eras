@@ -429,25 +429,20 @@ html, body {
 .polaroid-photo {
   width: 100%;
   aspect-ratio: 1 / 1;
-  border: 1.5px dashed var(--divider);
   border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
-  background: var(--bg);
-  transition: background 0.4s;
+  background: #fff;
+  overflow: hidden;
 }
-.polaroid-photo-label {
-  font-family: 'Space Mono', monospace;
-  font-size: 7.5px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  opacity: 0.4;
-  text-align: center;
-  padding: 6px;
-  line-height: 1.6;
+.polaroid-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  mix-blend-mode: multiply;
 }
 .polaroid-name {
   font-family: 'Fraunces', serif;
@@ -484,6 +479,19 @@ html, body {
   opacity: 0.72;
 }
 .polaroid-caption em { font-style: italic; }
+.polaroid-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dell);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+.polaroid-link:hover { border-bottom-color: var(--dell); }
 
 /* ── FOOTER ── */
 #footer-bar {
