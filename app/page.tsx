@@ -87,10 +87,10 @@ const ERAS: Record<string, Era> = {
         productUrl: 'https://www.dell.com/en-us/shop/dell-ultrasharp-27-4k-thunderbolt-hub-monitor-u2725qe/apd/210-bqhr/monitors-monitor-accessories',
       },
       {
-        name: 'Dell Canvas 27', price: '$1,299', orig: '$1,799', save: '$500',
-        caption:    'Draw, design, and create right on your screen.',
-        imageUrl:   'https://i.dell.com/is/image/DellContent/content/dam/images/products/workstations/dell-canvas/kv2718d/canvas-kv2718d-bk-gallery-1.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=527&qlt=100,1&resMode=sharp2&size=527,402&chrss=full',
-        productUrl: 'https://www.dell.com/en-us/shop/cty/dell-canvas/spd/dell-canvas-kv2718d',
+        name: 'Dell UltraSharp 4K Webcam WB7022', price: '$149', orig: '$199', save: '$50',
+        caption:    'AI-powered 4K video for creators who need to be seen.',
+        imageUrl:   'https://snpi.dell.com/snp/images/products/large/en-us~722-BBBI/722-BBBI.jpg',
+        productUrl: 'https://www.dell.com/en-us/shop/dell-ultrasharp-webcam-wb7022/apd/722-bbbi/pc-accessories',
       },
     ],
   },
@@ -141,7 +141,7 @@ const ERAS: Record<string, Era> = {
       {
         name: 'Dell 7-in-1 USB-C Mobile Adapter DA310', price: '$69', orig: '$99', save: '$30',
         caption:    'Every port you need in one pocket-sized hub.',
-        imageUrl:   'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/docks/dell-mobile-adapter-da310/spi/ng/adapter-usb-c-mobile-adapter-da310-gray-gallery-1.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=527&qlt=100,1&resMode=sharp2&size=527,402&chrss=full',
+        imageUrl:   'https://snpi.dell.com/snp/images/products/large/en-us~470-AFKL/470-AFKL.jpg',
         productUrl: 'https://www.dell.com/en-us/shop/dell-7-in-1-usb-c-mobile-adapter-da310/apd/470-afkl/pc-accessories',
       },
     ],
