@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0A0A0F;
+  --foreground: #FAFAFA;
+  --dell-blue: #007DB8;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #12121A;
+}
+::-webkit-scrollbar-thumb {
+  background: #2E2E3E;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3E3E5E;
+}
+
+/* Starfield background utility */
+.starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle var(--duration, 4s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: var(--max-opacity, 0.6); }
+}
+
+/* Era gradient backgrounds */
+.era-gradient-creator {
+  background: linear-gradient(135deg, #8B5CF620 0%, #EC489915 50%, transparent 100%);
+}
+.era-gradient-innovator {
+  background: linear-gradient(135deg, #06B6D420 0%, #3B82F615 50%, transparent 100%);
+}
+.era-gradient-achiever {
+  background: linear-gradient(135deg, #F59E0B20 0%, #EF444415 50%, transparent 100%);
+}
+.era-gradient-explorer {
+  background: linear-gradient(135deg, #10B98120 0%, #05996915 50%, transparent 100%);
+}
+.era-gradient-visionary {
+  background: linear-gradient(135deg, #DC262620 0%, #7C3AED15 50%, transparent 100%);
+}
+.era-gradient-performer {
+  background: linear-gradient(135deg, #EF444420 0%, #F9731615 50%, transparent 100%);
+}
+
+/* Shimmer loading effect */
+.shimmer-line {
+  background: linear-gradient(
+    90deg,
+    #1E1E2E 25%,
+    #2E2E4E 50%,
+    #1E1E2E 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Glow effect */
+.glow-text {
+  text-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+}
+
+/* Dell badge */
+.dell-badge {
+  background: linear-gradient(135deg, #007DB8, #005A8E);
+  border: 1px solid #007DB840;
+}
+
+/* Chat bubble styles */
+.bubble-user {
+  background: linear-gradient(135deg, #007DB820, #007DB810);
+  border: 1px solid #007DB830;
+}
+
+.bubble-ai {
+  background: rgba(30, 30, 46, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Product card hover */
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Era reveal animation */
+@keyframes eraReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+    filter: blur(10px);
+  }
+  60% {
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+.era-reveal-enter {
+  animation: eraReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
