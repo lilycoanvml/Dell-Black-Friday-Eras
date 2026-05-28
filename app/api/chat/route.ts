@@ -146,27 +146,25 @@ export async function POST(req: NextRequest) {
     const result = await chat.sendMessage(lastMessage.content);
     const rawContent = result.response.text();
 
-    // Detect era reveal response
-    const trimmed = rawContent.trim();
-    const looksLikeReveal =
-      trimmed.startsWith('{') &&
-      (trimmed.includes('"type":"era_reveal"') || trimmed.includes('"type": "era_reveal"'));
+    // Detect era reveal: check for the signal string anywhere in the response
+    if (rawContent.includes('"era_reveal"')) {
+      // Strip markdown code fences Gemini sometimes adds
+      const stripped = rawContent
+        .replace(/^```(?:json)?\s*/m, '')
+        .replace(/```\s*$/m, '')
+        .trim();
 
-    if (looksLikeReveal) {
-      try {
-        const parsed = JSON.parse(trimmed);
-        return NextResponse.json({ type: 'era_reveal', data: parsed });
-      } catch {
-        // Gemini sometimes wraps JSON in markdown code fences — strip them
-        const jsonMatch = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/) ||
-          trimmed.match(/(\{[\s\S]*\})/);
-        if (jsonMatch) {
-          try {
-            const parsed = JSON.parse(jsonMatch[1]);
+      // Extract the outermost JSON object
+      const start = stripped.indexOf('{');
+      const end = stripped.lastIndexOf('}');
+      if (start !== -1 && end !== -1 && end > start) {
+        try {
+          const parsed = JSON.parse(stripped.slice(start, end + 1));
+          if (parsed?.type === 'era_reveal') {
             return NextResponse.json({ type: 'era_reveal', data: parsed });
-          } catch {
-            // fall through to plain message
           }
+        } catch (parseErr) {
+          console.error('[era_reveal parse error]', parseErr);
         }
       }
     }
