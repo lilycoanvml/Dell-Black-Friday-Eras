@@ -1,173 +1,323 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function LandingPage() {
-  const router = useRouter();
-  const [isReady, setIsReady] = useState(false);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+const ROTS   = ['-1.3deg', '0.9deg', '0.5deg', '-0.8deg'];
+const DELAYS = ['0.04s',   '0.11s',  '0.18s',  '0.25s'];
+const PROTS  = ['-2deg', '1.8deg', '-1.1deg'];
+
+const QUESTIONS = [
+  {
+    label: 'Moment 01',
+    text:  "What's pulling your <em>attention</em> right now?",
+    sub:   'Choose what feels most true.',
+    answers: [
+      { text: "A project I want to <em>make</em> — something that hasn't existed before.", era: 'creator'   },
+      { text: "Building something that could actually <em>change</em> an industry.",        era: 'visionary' },
+      { text: "Hitting the <em>goals</em> I set for myself — and setting bigger ones.",     era: 'achiever'  },
+      { text: "Finding more <em>freedom</em> in how and where I spend my time.",            era: 'explorer'  },
+    ],
+  },
+  {
+    label: 'Moment 02',
+    text:  "Where do your best <em>ideas</em> come from?",
+    sub:   'Trust your instinct here.',
+    answers: [
+      { text: "A blank page, a new playlist, and space to <em>wander</em>.",                   era: 'creator'   },
+      { text: "Challenging the <em>premise</em> — asking why it has to be this way at all.",   era: 'visionary' },
+      { text: "A clear goal, a deadline, and the drive to <em>outperform</em>.",               era: 'achiever'  },
+      { text: "New places, new people — <em>movement</em> unlocks everything.",                era: 'explorer'  },
+    ],
+  },
+  {
+    label: 'Moment 03',
+    text:  "What does a <em>good day</em> look like for you?",
+    sub:   'Paint the picture.',
+    answers: [
+      { text: "I made something <em>beautiful</em> and people felt it.",                       era: 'creator'   },
+      { text: "I moved something forward that matters — at <em>scale</em>.",                   era: 'visionary' },
+      { text: "I crossed every item off the list and still had <em>energy</em> left.",         era: 'achiever'  },
+      { text: "I was somewhere I'd never been, doing something <em>unexpected</em>.",          era: 'explorer'  },
+    ],
+  },
+  {
+    label: 'Moment 04',
+    text:  "What are you <em>ready</em> to do more of?",
+    sub:   'No wrong answer.',
+    answers: [
+      { text: "Releasing work into the world — more <em>boldly</em>.",             era: 'creator'   },
+      { text: "Taking the big <em>swing</em>, not just the safe one.",             era: 'visionary' },
+      { text: "Leading — stepping into rooms where <em>decisions</em> are made.", era: 'achiever'  },
+      { text: "Saying yes to things that <em>scare</em> me a little.",             era: 'explorer'  },
+    ],
+  },
+  {
+    label: 'Moment 05',
+    text:  "Which word feels most like your <em>next chapter</em>?",
+    sub:   'The last one. Make it count.',
+    answers: [
+      { text: "<em>Expression.</em> My voice, my vision, my mark on the world.",          era: 'creator'   },
+      { text: "<em>Impact.</em> Something I built that outlasts the moment.",             era: 'visionary' },
+      { text: "<em>Momentum.</em> Forward, always — with intention behind every step.",  era: 'achiever'  },
+      { text: "<em>Freedom.</em> The open road, the open tab, the open question.",        era: 'explorer'  },
+    ],
+  },
+];
+
+type Product = { name: string; price: string; orig: string; save: string; caption: string };
+type Era     = { name: string; tagline: string; description: string; primaryColor: string; products: Product[] };
+
+const ERAS: Record<string, Era> = {
+  creator: {
+    name:         'The Creator Era',
+    tagline:      "You don't follow trends. You set them.",
+    description:  "Your next chapter is defined by what you make — the art, the content, the work that only you could bring into the world. This era belongs to the ones who build beautiful things and dare to share them.",
+    primaryColor: '#8B5CF6',
+    products: [
+      { name: 'Dell XPS 16',                   price: '$1,799', orig: '$2,199', save: '$400', caption: 'Your work deserves a canvas this beautiful.'      },
+      { name: 'Dell UltraSharp 27 4K Monitor', price: '$449',   orig: '$699',   save: '$250', caption: 'Every pixel of your vision, rendered faithfully.' },
+      { name: 'Dell Canvas 27',                price: '$1,299', orig: '$1,799', save: '$500', caption: 'Draw, design, and create right on your screen.'   },
+    ],
+  },
+  achiever: {
+    name:         'The Achiever Era',
+    tagline:      "You don't aim for the bar. You raise it.",
+    description:  "Strategy, execution, and relentless forward motion — this era is for the ones who turn ambition into outcomes. You lead rooms, hit goals, and immediately set bigger ones.",
+    primaryColor: '#F59E0B',
+    products: [
+      { name: 'Dell Latitude 9550',           price: '$1,899', orig: '$2,399', save: '$500', caption: 'Business-grade speed, security, and stamina.'    },
+      { name: 'Dell Thunderbolt Dock WD22TB4', price: '$249',   orig: '$349',   save: '$100', caption: 'One cable. Every device. Zero friction.'           },
+      { name: 'Dell 27 Monitor P2725HE',      price: '$299',   orig: '$449',   save: '$150', caption: 'Clear display for the decisions that matter.'     },
+    ],
+  },
+  explorer: {
+    name:         'The Explorer Era',
+    tagline:      "The whole world is your workspace.",
+    description:  "You don't need a desk to do your best work. This era belongs to the ones who thrive in motion — trading the commute for curiosity and building a life that moves as fast as you do.",
+    primaryColor: '#10B981',
+    products: [
+      { name: 'Dell XPS 13',                     price: '$1,099', orig: '$1,399', save: '$300', caption: 'The whole world is your office.'                      },
+      { name: 'Dell Pro Wireless Headset WL5022', price: '$149',   orig: '$229',   save: '$80',  caption: 'Crystal-clear calls from wherever you roam.'         },
+      { name: 'Dell Power Companion PW7018LC',    price: '$129',   orig: '$179',   save: '$50',  caption: 'Keep going long after the outlet runs out.'           },
+    ],
+  },
+  visionary: {
+    name:         'The Visionary Era',
+    tagline:      "You're not disrupting the industry. You're building the next one.",
+    description:  "Legacy-level thinking, mission-driven work, and the courage to bet on ideas that haven't been proven yet. This era is for the ones who don't just see what's coming — they build it.",
+    primaryColor: '#7C3AED',
+    products: [
+      { name: 'Dell XPS 16',                       price: '$1,799', orig: '$2,199', save: '$400', caption: "Power that matches the scale of your ambition."        },
+      { name: 'Dell 40 Curved Conference Monitor',  price: '$999',   orig: '$1,399', save: '$400', caption: 'A panoramic view for people thinking at that scale.'  },
+      { name: 'Dell Premier Wireless KM7321W',      price: '$249',   orig: '$349',   save: '$100', caption: 'A workspace as polished as your pitch.'                },
+    ],
+  },
+};
+
+export default function EraQuiz() {
+  const [showStart, setShowStart]   = useState(true);
+  const [startOut,  setStartOut]    = useState(false);
+  const [screen,    setScreen]      = useState<'quiz' | 'result'>('quiz');
+  const [currentQ,  setCurrentQ]    = useState(0);
+  const [answers,   setAnswers]     = useState<string[]>([]);
+  const [mood,      setMood]        = useState('sage');
+  const [answering, setAnswering]   = useState(false);
+  const [selIdx,    setSelIdx]      = useState<number | null>(null);
+  const [cardKey,   setCardKey]     = useState(0);
+  const [fading,    setFading]      = useState(false);
+  const [resultEra, setResultEra]   = useState<string | null>(null);
 
   useEffect(() => {
-    const t = setTimeout(() => setIsReady(true), 100);
-    return () => clearTimeout(t);
+    const saved = localStorage.getItem('era-mood') || 'sage';
+    setMood(saved);
   }, []);
 
-  // Minimal starfield canvas
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    document.documentElement.setAttribute('data-mood', mood);
+  }, [mood]);
 
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener('resize', resize);
+  const toggleMood = () => {
+    const next = mood === 'sage' ? 'sand' : 'sage';
+    setMood(next);
+    localStorage.setItem('era-mood', next);
+  };
 
-    const stars = Array.from({ length: 120 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.2,
-      opacity: Math.random(),
-      speed: Math.random() * 0.3 + 0.05,
-    }));
+  const handleStart = () => {
+    setStartOut(true);
+    setTimeout(() => setShowStart(false), 360);
+  };
 
-    let raf: number;
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const s of stars) {
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${s.opacity})`;
-        ctx.fill();
-        s.opacity += (Math.random() - 0.5) * 0.02;
-        s.opacity = Math.max(0.05, Math.min(0.9, s.opacity));
-      }
-      raf = requestAnimationFrame(draw);
-    };
-    draw();
+  const pickAnswer = (idx: number, era: string) => {
+    if (answering) return;
+    setAnswering(true);
+    setSelIdx(idx);
+    const newAnswers = [...answers, era];
 
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('resize', resize);
-    };
-  }, []);
+    setTimeout(() => {
+      setFading(true);
+      setTimeout(() => {
+        if (currentQ < QUESTIONS.length - 1) {
+          setAnswers(newAnswers);
+          setCurrentQ(q => q + 1);
+          setSelIdx(null);
+          setAnswering(false);
+          setCardKey(k => k + 1);
+          setFading(false);
+        } else {
+          const scores: Record<string, number> = { creator: 0, achiever: 0, explorer: 0, visionary: 0 };
+          newAnswers.forEach(e => { scores[e] = (scores[e] || 0) + 1; });
+          const top = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+          localStorage.setItem('era-result', top);
+          setResultEra(top);
+          setScreen('result');
+          setFading(false);
+        }
+      }, 220);
+    }, 520);
+  };
+
+  const restart = () => {
+    setAnswers([]);
+    setCurrentQ(0);
+    setSelIdx(null);
+    setAnswering(false);
+    setResultEra(null);
+    setCardKey(k => k + 1);
+    setScreen('quiz');
+    localStorage.removeItem('era-result');
+  };
+
+  const q        = QUESTIONS[currentQ];
+  const era      = resultEra ? ERAS[resultEra] : null;
+  const progress = screen === 'result' ? 100 : (currentQ / 5) * 100;
+  const counter  = screen === 'result' ? 'Era Revealed' : `Question ${currentQ + 1} of 5`;
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#0A0A0F] flex flex-col">
-      {/* Starfield */}
-      <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />
+    <>
+      {/* Sticky notes */}
+      <div className="sticky sticky-1">discover<br />your next<br />chapter ✦</div>
+      <div className="sticky sticky-2">black friday<br />is here</div>
+      <div className="sticky sticky-3">find your<br />era →</div>
 
-      {/* Ambient glow orbs */}
-      <div className="fixed top-1/4 left-1/4 w-96 h-96 rounded-full bg-purple-600/5 blur-3xl pointer-events-none z-0 animate-pulse-slow" />
-      <div className="fixed bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-blue-500/5 blur-3xl pointer-events-none z-0 animate-pulse-slow" style={{ animationDelay: '2s' }} />
-
-      {/* Header */}
-      <header className="relative z-10 flex items-center justify-between px-8 pt-8">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-[#007DB8] rounded flex items-center justify-center">
-            <span className="text-white font-bold text-sm">D</span>
+      {/* Start overlay */}
+      {showStart && (
+        <div id="start-screen" className={startOut ? 'out' : ''}>
+          <div className="s-label">VML × Dell Technologies — Black Friday 2024</div>
+          <div className="s-title">
+            The Next<br /><em>Era Event</em>
           </div>
-          <span className="text-white/60 text-sm tracking-widest uppercase">Dell Technologies</span>
+          <div className="s-byline">Five questions. One era. Your next chapter starts here.</div>
+          <button className="s-btn" onClick={handleStart}>Begin Your Era</button>
         </div>
-        <div className="flex items-center gap-2 bg-red-600/90 text-white text-xs font-bold px-3 py-1.5 rounded-full tracking-wider uppercase">
-          <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
-          Black Friday
-        </div>
-      </header>
+      )}
 
-      {/* Hero */}
-      <main className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6">
-        <div
-          className="transition-all duration-1000"
-          style={{
-            opacity: isReady ? 1 : 0,
-            transform: isReady ? 'translateY(0)' : 'translateY(24px)',
-          }}
-        >
-          {/* Eyebrow */}
-          <p className="text-[#007DB8] text-xs tracking-[0.3em] uppercase font-medium mb-6">
-            A Black Friday unlike any other
-          </p>
-
-          {/* Main headline */}
-          <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-light text-white leading-none mb-4">
-            Find Your
-          </h1>
-          <h1
-            className="font-display text-6xl md:text-8xl lg:text-9xl font-light leading-none mb-10"
-            style={{
-              background: 'linear-gradient(135deg, #8B5CF6, #EC4899, #007DB8)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
-            Next Era
-          </h1>
-
-          {/* Subhead */}
-          <p className="text-white/50 text-lg md:text-xl max-w-md mx-auto leading-relaxed mb-12">
-            Something&apos;s shifting. A new chapter is calling.
-            <br />
-            Let&apos;s figure out exactly where you&apos;re headed — and equip you for it.
-          </p>
-
-          {/* CTA */}
-          <button
-            onClick={() => router.push('/chat')}
-            className="group relative inline-flex items-center gap-3 bg-white text-[#0A0A0F] font-semibold text-base px-8 py-4 rounded-full transition-all duration-300 hover:bg-white/90 hover:scale-105 active:scale-95 shadow-2xl"
-          >
-            Begin Your Journey
-            <svg
-              className="w-4 h-4 transition-transform group-hover:translate-x-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-            {/* Glow ring */}
-            <span className="absolute inset-0 rounded-full ring-2 ring-white/20 scale-110 opacity-0 group-hover:opacity-100 transition-all duration-300" />
-          </button>
-
-          {/* Social proof */}
-          <p className="mt-8 text-white/25 text-sm">
-            A 5-minute conversation. A lifetime of momentum.
-          </p>
-        </div>
-      </main>
-
-      {/* Era previews strip */}
-      <footer className="relative z-10 pb-10 px-8">
-        <div className="flex items-center justify-center gap-6 flex-wrap">
-          {[
-            { name: 'The Creator', color: '#8B5CF6' },
-            { name: 'The Innovator', color: '#06B6D4' },
-            { name: 'The Achiever', color: '#F59E0B' },
-            { name: 'The Explorer', color: '#10B981' },
-            { name: 'The Visionary', color: '#DC2626' },
-            { name: 'The Performer', color: '#EF4444' },
-          ].map((era) => (
-            <div
-              key={era.name}
-              className="flex items-center gap-2 text-xs text-white/30 hover:text-white/60 transition-colors"
-            >
-              <span
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ backgroundColor: era.color }}
-              />
-              {era.name}
+      {/* App shell — always in DOM so it appears the instant the overlay lifts */}
+      <div id="app">
+        {/* Metadata bar */}
+        <div id="meta-bar">
+          <div className="meta-left">
+            <div className="brand-lockup">
+              <strong>Dell Technologies</strong><br />Black Friday 2024
             </div>
-          ))}
+            <div className="divider-dot" />
+            <div className="event-name">The Next Era Event</div>
+          </div>
+          <div className="meta-right">
+            <div id="q-counter">{counter}</div>
+            <button id="mood-toggle" onClick={toggleMood}>
+              <div className="mood-dot" />
+              <span>{mood === 'sage' ? 'Sage' : 'Sand'}</span>
+            </button>
+          </div>
         </div>
-        <p className="text-center text-white/15 text-xs mt-4">
-          Which era is yours?
-        </p>
-      </footer>
-    </div>
+
+        {/* Progress track */}
+        <div id="progress-track">
+          <div id="progress-fill" style={{ width: `${progress}%` }} />
+        </div>
+
+        {/* Content area */}
+        <div id="content-area">
+
+          {/* Quiz view */}
+          {screen === 'quiz' && (
+            <div id="quiz-view" style={{ opacity: fading ? 0 : 1 }}>
+              <div id="question-zone">
+                <div className="q-top">
+                  <div className="q-label">{q.label}</div>
+                  <h2 className="q-text" dangerouslySetInnerHTML={{ __html: q.text }} />
+                  <p className="q-sub">{q.sub}</p>
+                </div>
+                <div className="q-bottom">
+                  <p className="nav-hint">tap a card to choose your answer</p>
+                </div>
+              </div>
+              <div id="answer-zone">
+                <div className="cards-grid" key={cardKey}>
+                  {q.answers.map((ans, i) => (
+                    <div
+                      key={i}
+                      className={`answer-card${selIdx === i ? ' selected' : ''}`}
+                      style={{ '--rot': ROTS[i], animationDelay: DELAYS[i] } as React.CSSProperties}
+                      onClick={() => pickAnswer(i, ans.era)}
+                    >
+                      <div className="card-letter">{'ABCD'[i]}</div>
+                      <div className="card-text" dangerouslySetInnerHTML={{ __html: ans.text }} />
+                      <div className="card-check">✓</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Result view */}
+          {screen === 'result' && era && (
+            <div
+              id="result-screen"
+              className="visible"
+              style={{ '--era-primary': era.primaryColor } as React.CSSProperties}
+            >
+              <div id="result-left">
+                <div className="r-label">Your Era Has Been Revealed</div>
+                <div id="r-era-name">{era.name}</div>
+                <div id="r-tagline">{era.tagline}</div>
+                <div id="r-description">{era.description}</div>
+                <div className="r-shop-cta">Shop your era at Dell.com &rarr; black friday deals live now</div>
+                <button className="retry-btn" onClick={restart}>Start Over</button>
+              </div>
+              <div id="result-right">
+                <div className="polaroids-row">
+                  {era.products.map((p, i) => (
+                    <div
+                      key={i}
+                      className="polaroid"
+                      style={{ '--prot': PROTS[i], '--era-primary': era.primaryColor } as React.CSSProperties}
+                    >
+                      <div className="polaroid-photo">
+                        <div className="polaroid-photo-label">{p.name}<br />photo placeholder</div>
+                      </div>
+                      <div className="polaroid-name">{p.name}</div>
+                      <div className="polaroid-prices">
+                        <span className="polaroid-price">{p.price}</span>
+                        <span className="polaroid-original">{p.orig}</span>
+                      </div>
+                      <div className="polaroid-caption">{p.caption}<br /><em>Save {p.save}</em></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+        </div>
+
+        {/* Footer */}
+        <div id="footer-bar">
+          <div className="footer-copy">&copy; 2024 Dell Technologies &middot; Black Friday &middot; VML Experience</div>
+          <div className="footer-cta">Dell.com/blackfriday</div>
+        </div>
+      </div>
+    </>
   );
 }

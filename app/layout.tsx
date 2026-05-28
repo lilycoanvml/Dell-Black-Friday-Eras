@@ -2,26 +2,28 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Find Your Next Era — Dell Technologies Black Friday',
+  title: 'The Next Era Event — Dell Technologies Black Friday',
   description:
-    'A conversational Black Friday experience. Discover the era you\'re stepping into and the technology that will take you there.',
+    'Five questions. One era. Discover your next chapter with Dell Technologies Black Friday.',
   openGraph: {
-    title: 'Find Your Next Era',
-    description: 'Discover your next era with Dell Technologies.',
+    title: 'The Next Era Event',
+    description: 'Discover your era — Dell Technologies Black Friday.',
     siteName: 'Dell Technologies',
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
-      <body className="antialiased bg-[#0A0A0F] text-white min-h-screen">
-        {children}
-      </body>
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,400&family=Caveat:wght@400;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }

@@ -40,7 +40,7 @@ export class RecommendationEngine {
   private products: Product[];
 
   constructor() {
-    this.products = productsData.catalog as Product[];
+    this.products = productsData.catalog as unknown as Product[];
   }
 
   recommend(context: RecommendationContext, count = 3): RecommendationResult[] {
